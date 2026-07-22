@@ -1,7 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include<stdbool.h>
 
+bool flag = true;
+bool flag1 = true;
+int option;
+int index;
 
 typedef struct {
     int arr[100];
@@ -27,6 +32,8 @@ InputData getinput() {
     return result;
 }
 
+int choice();
+
 int main() {
     printf("--------Welcome to Memory Inspector--------\n");
     printf("\nEnter number elements into the storage: (type q to stop entering numbers)\n");
@@ -36,8 +43,63 @@ int main() {
 
     printf("\n------------------------------------------\n");
 
+    while(flag){
+        flag = true;
+            choice();
+                switch(option){
 
+                    int i = 0;
+                    
+                    case 1:
+                    printf("Current position: %d\n", i);
+                    printf("Value of Current Position: %d\n", res.arr[i]);
+                    printf("Address of Current Position: %p\n", (void*)%res.arr[i]);
+                    printf("------------------------------------------------------\n\n");
+                    
+                    while(flag1){
+                        flag1 = true;
+                            choose1()
+                                switch(option1){
+                                    
+                                    case 1:
+                                    i++;
+                                    printf("Current position: %d\n", i);
+                                    printf("Value of Current Position: %d\n", res.arr[i]);
+                                    printf("Address of Current Position: %p\n", (void*)%res.arr[i]);
+                                    printf("------------------------------------------------------\n\n");
 
+                                    case 2:
+                                    i--;
+                                    if(i<0){
+                                        printf("You were on the very first index");
+                                    }else if(i>res.count){
+                                        printf("You were on the final element in the Storage");
+                                    }else{
+                                        printf("Current position: %d\n", i);
+                                        printf("Value of Current Position: %d\n", res.arr[i]);
+                                        printf("Address of Current Position: %p\n", (void*)%res.arr[i]);
+                                        printf("------------------------------------------------------\n\n");
+                                    }
+
+                                    case 3:
+                                    flag1 = false;
+                                    return;
+
+                                    default:
+                                    printf("WRONG INPUT ! TRY AGAIN");
+                                }
+                         
+                    }
+                    
+                    case 2:
+                    printf("Enter the index you want to check\n");
+                    scanf("%d", &index);
+                    
+
+                }
+            
+
+    }
     
     // for (int i = 0; i < res.count; i++) {
     //     printf("\nElement %d is: %d", i + 1, res.arr[i]);
@@ -47,3 +109,26 @@ int main() {
     return 0;
 }
 
+int choice(){
+    printf("Below are the tool you can use :");
+    printf("\n1. Current Position Info");
+    printf("\n2. Jump to an Index");
+    printf("\n3. Modify Value");
+    printf("\n4. Swap with Another Index");
+    printf("\n5. Exit");
+    printf("\nPlease Enter the choice number :");
+    scanf("%d", &option);
+    printf("\n-----------------------------------\n");
+
+    return option; 
+}
+
+int choose1(){
+        printf("Enter what you want to do next:\n");
+        printf("1. Next Index");
+        printf("2. Previous Index");
+        printf("3. Back");
+        scanf("%d", &option1);
+
+        return option1;
+}
