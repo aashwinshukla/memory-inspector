@@ -7,6 +7,8 @@ bool flag = true;
 bool flag1 = true;
 int option;
 int index;
+int value;
+int index1;
 
 typedef struct {
     int arr[100];
@@ -94,8 +96,52 @@ int main() {
                     case 2:
                     printf("Enter the index you want to check\n");
                     scanf("%d", &index);
+                    if(index<0 || index>count){
+                        printf("index can only be from 0 to %d", res.count);
+                    }else{
+                        printf("Current position: %d\n", index);
+                        printf("Value of Current Position: %d\n", res.arr[index]);
+                        printf("Address of Current Position: %p\n", (void*)%res.arr[index]);
+                        printf("------------------------------------------------------\n\n");
+                    }
                     
 
+                    case 3:
+                    printf("Enter the index whos value you want to modify\n");
+                    scanf("%d", &index);
+                    if(index<0 || index>count){
+                        printf("index can only be from 0 to %d", res.count);
+                    }else{
+                        printf("Current position: %d\n", index);
+                        printf("Value of Current Position: %d\n", res.arr[index]);
+                        printf("Enter the new value :\n");
+                        scanf("%d", &value);
+                        arr[index] = value;
+                        printf("New modified value is : %d ", res.arr[index])
+                    }
+                    
+                    case 4:
+                    int c;
+                    printf("Enter the Index number of the first element:\n");
+                    scanf("%d", &index);
+                    printf("Enter the Index number of the second element:\n");
+                    scanf("%d", &index1);
+
+                    c = arr[index];
+                    arr[index] = arr[index1];
+                    arr[index1] = c;
+
+                    printf("Value at %d index is : %d", index, res.arr[index]);
+                    printf("Value at %d index is : %d", index1, res.arr[index1]);
+
+                    case 5:
+                    printf("\n----------------------------------------------\n");
+                    printf("         thank you for using our tool         ");
+                    printf("\n----------------------------------------------\n");
+                    flag = false;
+
+                    default:
+                    printf("WRONG INPUT!! TRY AGAIN");
                 }
             
 
