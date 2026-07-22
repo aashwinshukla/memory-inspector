@@ -68,21 +68,23 @@ int main() {
                                 switch(option1){
                                     
                                     case 1:
-                                    i++;
-                                    printf("Current position: %d\n", i);
-                                    printf("Value of Current Position: %d\n", res.arr[i]);
-                                    printf("Address of Current Position: %p\n", (void*)&res.arr[i]);
-                                    printf("------------------------------------------------------\n\n");
+                                    if(i+1 > res.count){
+                                        printf("You were all the last element in the storgae\n");
+                                    }else{
+                                        printf("Current position: %d\n", i);
+                                        printf("Value of Current Position: %d\n", res.arr[i]);
+                                        printf("Address of Current Position: %p\n", (void*)&res.arr[i]);
+                                        printf("------------------------------------------------------\n\n");
+                                    }
                                     break; 
 
 
                                     case 2:
-                                    i--;
-                                    if(i<0){
+
+                                    if(i-1<0){
                                         printf("You were on the very first index");
-                                    }else if(i>res.count){
-                                        printf("You were on the final element in the Storage");
                                     }else{
+                                        i--;
                                         printf("Current position: %d\n", i);
                                         printf("Value of Current Position: %d\n", res.arr[i]);
                                         printf("Address of Current Position: %p\n", (void*)&res.arr[i]);
