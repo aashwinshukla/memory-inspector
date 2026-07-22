@@ -6,6 +6,7 @@
 bool flag = true;
 bool flag1 = true;
 int option;
+int option1;
 int index;
 int value;
 int index1;
@@ -47,6 +48,7 @@ int main() {
 
     while(flag){
         flag = true;
+        int c;
             choice();
                 switch(option){
 
@@ -55,19 +57,19 @@ int main() {
                     case 1:
                     printf("Current position: %d\n", i);
                     printf("Value of Current Position: %d\n", res.arr[i]);
-                    printf("Address of Current Position: %p\n", (void*)%res.arr[i]);
+                    printf("Address of Current Position: %p\n", (void*)res.arr[i]);
                     printf("------------------------------------------------------\n\n");
                     
                     while(flag1){
                         flag1 = true;
-                            choose1()
+                            choose1();
                                 switch(option1){
                                     
                                     case 1:
                                     i++;
                                     printf("Current position: %d\n", i);
                                     printf("Value of Current Position: %d\n", res.arr[i]);
-                                    printf("Address of Current Position: %p\n", (void*)%res.arr[i]);
+                                    printf("Address of Current Position: %p\n", (void*)res.arr[i]);
                                     printf("------------------------------------------------------\n\n");
 
                                     case 2:
@@ -79,7 +81,7 @@ int main() {
                                     }else{
                                         printf("Current position: %d\n", i);
                                         printf("Value of Current Position: %d\n", res.arr[i]);
-                                        printf("Address of Current Position: %p\n", (void*)%res.arr[i]);
+                                        printf("Address of Current Position: %p\n", (void*)res.arr[i]);
                                         printf("------------------------------------------------------\n\n");
                                     }
 
@@ -96,12 +98,12 @@ int main() {
                     case 2:
                     printf("Enter the index you want to check\n");
                     scanf("%d", &index);
-                    if(index<0 || index>count){
+                    if(index<0 || index > res.count){
                         printf("index can only be from 0 to %d", res.count);
                     }else{
                         printf("Current position: %d\n", index);
                         printf("Value of Current Position: %d\n", res.arr[index]);
-                        printf("Address of Current Position: %p\n", (void*)%res.arr[index]);
+                        printf("Address of Current Position: %p\n", (void*)res.arr[index]);
                         printf("------------------------------------------------------\n\n");
                     }
                     
@@ -109,27 +111,27 @@ int main() {
                     case 3:
                     printf("Enter the index whos value you want to modify\n");
                     scanf("%d", &index);
-                    if(index<0 || index>count){
+                    if(index<0 || index> res.count){
                         printf("index can only be from 0 to %d", res.count);
                     }else{
                         printf("Current position: %d\n", index);
                         printf("Value of Current Position: %d\n", res.arr[index]);
                         printf("Enter the new value :\n");
                         scanf("%d", &value);
-                        arr[index] = value;
-                        printf("New modified value is : %d ", res.arr[index])
+                        res.arr[index] = value;
+                        printf("New modified value is : %d ", res.arr[index]);
                     }
                     
                     case 4:
-                    int c;
+                    
                     printf("Enter the Index number of the first element:\n");
                     scanf("%d", &index);
                     printf("Enter the Index number of the second element:\n");
                     scanf("%d", &index1);
 
-                    c = arr[index];
-                    arr[index] = arr[index1];
-                    arr[index1] = c;
+                    c = res.arr[index];
+                    res.arr[index] = res.arr[index1];
+                    res.arr[index1] = c;
 
                     printf("Value at %d index is : %d", index, res.arr[index]);
                     printf("Value at %d index is : %d", index1, res.arr[index1]);
@@ -147,10 +149,7 @@ int main() {
 
     }
     
-    // for (int i = 0; i < res.count; i++) {
-    //     printf("\nElement %d is: %d", i + 1, res.arr[i]);
-    //     printf("\nAddress of the element is: %p", (void*)&res.arr[i]);
-    // }
+ 
 
     return 0;
 }
