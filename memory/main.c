@@ -57,7 +57,7 @@ int main() {
                     case 1:
                     printf("Current position: %d\n", i);
                     printf("Value of Current Position: %d\n", res.arr[i]);
-                    printf("Address of Current Position: %p\n", (void*)res.arr[i]);
+                    printf("Address of Current Position: %p\n", (void*)&res.arr[i]);
                     printf("------------------------------------------------------\n\n");
                     
                     while(flag1){
@@ -69,7 +69,7 @@ int main() {
                                     i++;
                                     printf("Current position: %d\n", i);
                                     printf("Value of Current Position: %d\n", res.arr[i]);
-                                    printf("Address of Current Position: %p\n", (void*)res.arr[i]);
+                                    printf("Address of Current Position: %p\n", (void*)&res.arr[i]);
                                     printf("------------------------------------------------------\n\n");
 
                                     case 2:
@@ -81,7 +81,7 @@ int main() {
                                     }else{
                                         printf("Current position: %d\n", i);
                                         printf("Value of Current Position: %d\n", res.arr[i]);
-                                        printf("Address of Current Position: %p\n", (void*)res.arr[i]);
+                                        printf("Address of Current Position: %p\n", (void*)&res.arr[i]);
                                         printf("------------------------------------------------------\n\n");
                                     }
 
@@ -103,7 +103,7 @@ int main() {
                     }else{
                         printf("Current position: %d\n", index);
                         printf("Value of Current Position: %d\n", res.arr[index]);
-                        printf("Address of Current Position: %p\n", (void*)res.arr[index]);
+                        printf("Address of Current Position: %p\n", (void*)&res.arr[index]);
                         printf("------------------------------------------------------\n\n");
                     }
                     
