@@ -43,8 +43,15 @@ memory-inspector/
 ### Build
 
 **GCC (Linux / macOS / MinGW on Windows)**
+
+> Both source files must be passed together — `utils.c` contains the implementations that `main.c` calls.
+
 ```bash
+# From the repo root
 gcc memory/main.c memory/utils.c -o memory-inspector
+
+# Or from inside the memory/ folder
+gcc main.c utils.c -o memory-inspector
 ```
 
 **MSVC (Windows Developer Command Prompt)**
