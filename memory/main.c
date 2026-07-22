@@ -36,6 +36,7 @@ InputData getinput() {
 }
 
 int choice();
+int choose1();
 
 int main() {
     printf("--------Welcome to Memory Inspector--------\n");
