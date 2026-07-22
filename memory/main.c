@@ -35,8 +35,8 @@ InputData getinput() {
     return result;
 }
 
-int choice();
-int choose1();
+int choice(void);
+int choose1(void);
 
 int main() {
     printf("--------Welcome to Memory Inspector--------\n");
@@ -73,6 +73,8 @@ int main() {
                                     printf("Value of Current Position: %d\n", res.arr[i]);
                                     printf("Address of Current Position: %p\n", (void*)&res.arr[i]);
                                     printf("------------------------------------------------------\n\n");
+                                    break; 
+
 
                                     case 2:
                                     i--;
@@ -86,16 +88,20 @@ int main() {
                                         printf("Address of Current Position: %p\n", (void*)&res.arr[i]);
                                         printf("------------------------------------------------------\n\n");
                                     }
+                                    break;
+
 
                                     case 3:
                                     flag1 = false;
-                                    return;
+                                    break;
 
                                     default:
                                     printf("WRONG INPUT ! TRY AGAIN");
+                                    break;
                                 }
                          
                     }
+                    break;
                     
                     case 2:
                     printf("Enter the index you want to check\n");
@@ -108,6 +114,7 @@ int main() {
                         printf("Address of Current Position: %p\n", (void*)&res.arr[idx]);
                         printf("------------------------------------------------------\n\n");
                     }
+                    break;
                     
 
                     case 3:
@@ -123,6 +130,8 @@ int main() {
                         res.arr[idx] = value;
                         printf("New modified value is : %d ", res.arr[idx]);
                     }
+                    break;
+
                     
                     case 4:
                     
@@ -137,15 +146,20 @@ int main() {
 
                     printf("Value at %d index is : %d", idx, res.arr[idx]);
                     printf("Value at %d index is : %d", idx1, res.arr[idx1]);
+                    break; 
+
 
                     case 5:
                     printf("\n----------------------------------------------\n");
                     printf("         thank you for using our tool         ");
                     printf("\n----------------------------------------------\n");
                     flag = false;
+                    break;
+
 
                     default:
                     printf("WRONG INPUT!! TRY AGAIN");
+                    break;
                 }
             
 
