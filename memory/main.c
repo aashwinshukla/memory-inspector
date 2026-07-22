@@ -1,199 +1,176 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include<stdbool.h>
+#include "utils.h"
 
-bool flag = true;
-bool flag1 = true;
-int option;
-int option1;
-int idx;
-int value;
-int idx1;
+int main(void) {
+    printf("╔══════════════════════════════════════════╗\n");
+    printf("║       Welcome to Memory Inspector        ║\n");
+    printf("╚══════════════════════════════════════════╝\n\n");
 
-typedef struct {
-    int arr[100];
-    int count;
-} InputData;
-
-InputData getinput() {
-    InputData result;
-    result.count = 0;
-    char buffer[20];
-
-    for (int i = 0; i < 100; i++) {
-        if (scanf("%19s", buffer) != 1)
-            break;
-
-        if (strcmp(buffer, "q") == 0 || strcmp(buffer, "Q") == 0) {
-            break;
-        }
-
-        result.arr[i] = atoi(buffer);
-        result.count++;
-    }
-    return result;
-}
-
-int choice(void);
-int choose1(void);
-
-int main() {
-    printf("--------Welcome to Memory Inspector--------\n");
-    printf("\nEnter number elements into the storage: (type q to stop entering numbers)\n");
-    
-    
+    printf("Enter integers into storage (type 'q' to stop):\n");
     InputData res = getinput();
 
-    printf("\n------------------------------------------\n");
+    if (res.count == 0) {
+        printf("No elements entered. Exiting.\n");
+        return 0;
+    }
 
-    int i = 0;
-    while(flag){
-        flag = true;
-        int c;
-            choice();
-                switch(option){
+    printf("\n%d element(s) stored successfully.\n", res.count);
+    printf("----------------------------------------------\n");
 
-                    
-                    
-                    case 1:{
-                        flag1 = true;
-                    printf("Current position: %d\n", i);
-                    printf("Value of Current Position: %d\n", res.arr[i]);
-                    printf("Address of Current Position: %p\n", (void*)&res.arr[i]);
-                    printf("------------------------------------------------------\n\n");
-                    
-                    while(flag1){
-                        // flag1 = true;
-                            choose1();
-                                switch(option1){
-                                    
-                                    case 1:
-                                    if(i+1 > res.count){
-                                        printf("You were all the last element in the storgae\n");
-                                    }else{
-                                        printf("Current position: %d\n", i);
-                                        printf("Value of Current Position: %d\n", res.arr[i]);
-                                        printf("Address of Current Position: %p\n", (void*)&res.arr[i]);
-                                        printf("------------------------------------------------------\n\n");
-                                    }
-                                    break; 
+    int i = 0;          /* current cursor position */
+    bool running = true;
 
+    while (running) {
+        int opt = choice();
 
-                                    case 2:
+        switch (opt) {
 
-                                    if(i-1<0){
-                                        printf("You were on the very first index");
-                                    }else{
-                                        i--;
-                                        printf("Current position: %d\n", i);
-                                        printf("Value of Current Position: %d\n", res.arr[i]);
-                                        printf("Address of Current Position: %p\n", (void*)&res.arr[i]);
-                                        printf("------------------------------------------------------\n\n");
-                                    }
-                                    break;
+            /* ── 1. Navigate from current position ── */
+            case 1: {
+                print_element(&res, i);
+                bool navigating = true;
 
+                while (navigating) {
+                    int nav = choose1();
 
-                                    case 3:
-                                    flag1 = false;
-                                    break;
-
-                                    default:
-                                    printf("WRONG INPUT ! TRY AGAIN");
-                                    break;
-                                }
+                    switch (nav) {
+                        case 1:   /* Next */
+                            if (i + 1 >= res.count) {
+                                printf("  Already at the last element (index %d).\n\n", i);
+                            } else {
+                                i++;
+                                print_element(&res, i);
                             }
-                         
+                            break;
+
+                        case 2:   /* Previous */
+                            if (i - 1 < 0) {
+                                printf("  Already at the first element (index 0).\n\n");
+                            } else {
+                                i--;
+                                print_element(&res, i);
+                            }
+                            break;
+
+                        case 3:   /* Back */
+                            navigating = false;
+                            break;
+
+                        default:
+                            printf("  Invalid choice. Enter 1, 2, or 3.\n");
+                            break;
                     }
-                    break;
-                    
-                    case 2:
-                    printf("Enter the index you want to check\n");
-                    scanf("%d", &idx);
-                    if(idx<0 || idx > res.count){
-                        printf("index can only be from 0 to %d", res.count);
-                    }else{
-                        printf("Current position: %d\n", idx);
-                        printf("Value of Current Position: %d\n", res.arr[idx]);
-                        printf("Address of Current Position: %p\n", (void*)&res.arr[idx]);
-                        printf("------------------------------------------------------\n\n");
-                    }
-                    break;
-                    
+                }
+                break;
+            }
 
-                    case 3:
-                    printf("Enter the index whos value you want to modify\n");
-                    scanf("%d", &idx);
-                    if(idx<0 || idx> res.count){
-                        printf("index can only be from 0 to %d", res.count);
-                    }else{
-                        printf("Current position: %d\n", idx);
-                        printf("Value of Current Position: %d\n", res.arr[idx]);
-                        printf("Enter the new value :\n");
-                        scanf("%d", &value);
-                        res.arr[idx] = value;
-                        printf("New modified value is : %d ", res.arr[idx]);
-                    }
-                    break;
-
-                    
-                    case 4:
-                    
-                    printf("Enter the Index number of the first element:\n");
-                    scanf("%d", &idx);
-                    printf("Enter the Index number of the second element:\n");
-                    scanf("%d", &idx1);
-
-                    c = res.arr[idx];
-                    res.arr[idx] = res.arr[idx1];
-                    res.arr[idx1] = c;
-
-                    printf("Value at %d index is : %d", idx, res.arr[idx]);
-                    printf("Value at %d index is : %d", idx1, res.arr[idx1]);
-                    break; 
-
-
-                    case 5:
-                    printf("\n----------------------------------------------\n");
-                    printf("         thank you for using our tool         ");
-                    printf("\n----------------------------------------------\n");
-                    flag = false;
-                    break;
-
-
-                    default:
-                    printf("WRONG INPUT!! TRY AGAIN");
+            /* ── 2. Jump to a specific index ── */
+            case 2: {
+                int idx;
+                printf("Enter the index to jump to (0 - %d): ", res.count - 1);
+                if (scanf("%d", &idx) != 1) {
+                    /* flush bad token */
+                    int ch;
+                    while ((ch = getchar()) != '\n' && ch != EOF);
+                    printf("  Invalid input.\n");
                     break;
                 }
-            
 
+                if (idx < 0 || idx >= res.count) {
+                    printf("  Index out of range. Valid range: 0 to %d.\n", res.count - 1);
+                } else {
+                    i = idx;   /* update cursor so navigation stays in sync */
+                    print_element(&res, i);
+                }
+                break;
+            }
+
+            /* ── 3. Modify value at an index ── */
+            case 3: {
+                int idx;
+                printf("Enter the index to modify (0 - %d): ", res.count - 1);
+                if (scanf("%d", &idx) != 1) {
+                    int ch;
+                    while ((ch = getchar()) != '\n' && ch != EOF);
+                    printf("  Invalid input.\n");
+                    break;
+                }
+
+                if (idx < 0 || idx >= res.count) {
+                    printf("  Index out of range. Valid range: 0 to %d.\n", res.count - 1);
+                    break;
+                }
+
+                printf("  Current value at index %d: %d\n", idx, res.arr[idx]);
+                printf("  Enter new value: ");
+                int val;
+                if (scanf("%d", &val) != 1) {
+                    int ch;
+                    while ((ch = getchar()) != '\n' && ch != EOF);
+                    printf("  Invalid input. Value not changed.\n");
+                    break;
+                }
+
+                res.arr[idx] = val;
+                printf("  Updated — index %d is now: %d\n\n", idx, res.arr[idx]);
+                break;
+            }
+
+            /* ── 4. Swap two elements ── */
+            case 4: {
+                int idx_a, idx_b;
+                printf("Enter index of first element  (0 - %d): ", res.count - 1);
+                if (scanf("%d", &idx_a) != 1) {
+                    int ch;
+                    while ((ch = getchar()) != '\n' && ch != EOF);
+                    printf("  Invalid input.\n");
+                    break;
+                }
+
+                printf("Enter index of second element (0 - %d): ", res.count - 1);
+                if (scanf("%d", &idx_b) != 1) {
+                    int ch;
+                    while ((ch = getchar()) != '\n' && ch != EOF);
+                    printf("  Invalid input.\n");
+                    break;
+                }
+
+                if (idx_a < 0 || idx_a >= res.count ||
+                    idx_b < 0 || idx_b >= res.count) {
+                    printf("  One or both indices out of range. Valid range: 0 to %d.\n",
+                           res.count - 1);
+                    break;
+                }
+
+                if (idx_a == idx_b) {
+                    printf("  Both indices are the same — nothing to swap.\n");
+                    break;
+                }
+
+                int tmp        = res.arr[idx_a];
+                res.arr[idx_a] = res.arr[idx_b];
+                res.arr[idx_b] = tmp;
+
+                printf("  Swap done:\n");
+                printf("    Index %d → value: %d\n", idx_a, res.arr[idx_a]);
+                printf("    Index %d → value: %d\n\n", idx_b, res.arr[idx_b]);
+                break;
+            }
+
+            /* ── 5. Exit ── */
+            case 5:
+                printf("\n╔══════════════════════════════════════════╗\n");
+                printf("║     Thank you for using Memory Inspector  ║\n");
+                printf("╚══════════════════════════════════════════╝\n");
+                running = false;
+                break;
+
+            default:
+                printf("  Invalid choice. Please enter a number between 1 and 5.\n");
+                break;
+        }
     }
-    
- 
 
     return 0;
-}
-
-int choice(){
-    printf("Below are the tool you can use :");
-    printf("\n1. Current Position Info");
-    printf("\n2. Jump to an Index");
-    printf("\n3. Modify Value");
-    printf("\n4. Swap with Another Index");
-    printf("\n5. Exit");
-    printf("\nPlease Enter the choice number :");
-    scanf("%d", &option);
-    printf("\n-----------------------------------\n");
-
-    return option; 
-}
-
-int choose1(){
-        printf("Enter what you want to do next:\n");
-        printf("1. Next Index");
-        printf("2. Previous Index");
-        printf("3. Back");
-        scanf("%d", &option1);
-
-        return option1;
 }
