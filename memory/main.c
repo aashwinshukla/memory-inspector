@@ -7,9 +7,9 @@ bool flag = true;
 bool flag1 = true;
 int option;
 int option1;
-int index;
+int idx;
 int value;
-int index1;
+int idx1;
 
 typedef struct {
     int arr[100];
@@ -46,13 +46,14 @@ int main() {
 
     printf("\n------------------------------------------\n");
 
+    int i = 0;
     while(flag){
         flag = true;
         int c;
             choice();
                 switch(option){
 
-                    int i = 0;
+                    
                     
                     case 1:
                     printf("Current position: %d\n", i);
@@ -97,44 +98,44 @@ int main() {
                     
                     case 2:
                     printf("Enter the index you want to check\n");
-                    scanf("%d", &index);
-                    if(index<0 || index > res.count){
+                    scanf("%d", &idx);
+                    if(idx<0 || idx > res.count){
                         printf("index can only be from 0 to %d", res.count);
                     }else{
-                        printf("Current position: %d\n", index);
-                        printf("Value of Current Position: %d\n", res.arr[index]);
-                        printf("Address of Current Position: %p\n", (void*)&res.arr[index]);
+                        printf("Current position: %d\n", idx);
+                        printf("Value of Current Position: %d\n", res.arr[idx]);
+                        printf("Address of Current Position: %p\n", (void*)&res.arr[idx]);
                         printf("------------------------------------------------------\n\n");
                     }
                     
 
                     case 3:
                     printf("Enter the index whos value you want to modify\n");
-                    scanf("%d", &index);
-                    if(index<0 || index> res.count){
+                    scanf("%d", &idx);
+                    if(idx<0 || idx> res.count){
                         printf("index can only be from 0 to %d", res.count);
                     }else{
-                        printf("Current position: %d\n", index);
-                        printf("Value of Current Position: %d\n", res.arr[index]);
+                        printf("Current position: %d\n", idx);
+                        printf("Value of Current Position: %d\n", res.arr[idx]);
                         printf("Enter the new value :\n");
                         scanf("%d", &value);
-                        res.arr[index] = value;
-                        printf("New modified value is : %d ", res.arr[index]);
+                        res.arr[idx] = value;
+                        printf("New modified value is : %d ", res.arr[idx]);
                     }
                     
                     case 4:
                     
                     printf("Enter the Index number of the first element:\n");
-                    scanf("%d", &index);
+                    scanf("%d", &idx);
                     printf("Enter the Index number of the second element:\n");
-                    scanf("%d", &index1);
+                    scanf("%d", &idx1);
 
-                    c = res.arr[index];
-                    res.arr[index] = res.arr[index1];
-                    res.arr[index1] = c;
+                    c = res.arr[idx];
+                    res.arr[idx] = res.arr[idx1];
+                    res.arr[idx1] = c;
 
-                    printf("Value at %d index is : %d", index, res.arr[index]);
-                    printf("Value at %d index is : %d", index1, res.arr[index1]);
+                    printf("Value at %d index is : %d", idx, res.arr[idx]);
+                    printf("Value at %d index is : %d", idx1, res.arr[idx1]);
 
                     case 5:
                     printf("\n----------------------------------------------\n");
