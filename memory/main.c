@@ -56,14 +56,15 @@ int main() {
 
                     
                     
-                    case 1:
+                    case 1:{
+                        flag1 = true;
                     printf("Current position: %d\n", i);
                     printf("Value of Current Position: %d\n", res.arr[i]);
                     printf("Address of Current Position: %p\n", (void*)&res.arr[i]);
                     printf("------------------------------------------------------\n\n");
                     
                     while(flag1){
-                        flag1 = true;
+                        // flag1 = true;
                             choose1();
                                 switch(option1){
                                     
@@ -101,6 +102,7 @@ int main() {
                                     printf("WRONG INPUT ! TRY AGAIN");
                                     break;
                                 }
+                            }
                          
                     }
                     break;
